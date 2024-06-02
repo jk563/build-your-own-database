@@ -1,0 +1,14 @@
+test: vet 
+
+build: test
+	GOOS=linux GOARCH=amd64 go build -o byod byod.go
+
+lint: fmt
+	revive -formatter friendly -set_exit_status ./...
+
+fmt:
+	go fmt ./...
+
+vet: lint
+	go vet ./...
+
